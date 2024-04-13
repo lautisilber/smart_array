@@ -1,5 +1,5 @@
-from .smart_array_base import SmartArrayNumber, SmartListNumber
-from .smart_array import SmartArrayInt
+from .smart_arrays_base import SmartArrayNumber, SmartListNumber
+from .smart_arrays import SmartArrayInt
 from typing import TypeVar, Union, Optional
 import itertools
 

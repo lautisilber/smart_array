@@ -1,8 +1,8 @@
 import os, json, re
-from .smart_array_base import (
+from .smart_arrays_base import (
     SmartArray, SmartList, SmartArrayNumber, SmartListNumber
 )
-from .smart_array import (
+from .smart_arrays import (
     SmartArrayNumber, SmartArrayComplex, SmartArrayFloat, SmartArrayInt, SmartArrayBool,
     SmartListNumber, SmartListComplex, SmartListFloat, SmartListInt, SmartListBool
 )

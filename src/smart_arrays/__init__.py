@@ -1,9 +1,9 @@
-from .smart_array import (
+from .smart_arrays import (
     SmartArrayComplex, SmartArrayFloat, SmartArrayInt, SmartArrayBool,
     SmartListComplex, SmartListFloat, SmartListInt, SmartListBool,
 )
 
-from .smart_array_base import (
+from .smart_arrays_base import (
     SmartArray, SmartList, SmartArrayNumber, SmartListNumber
 )
 

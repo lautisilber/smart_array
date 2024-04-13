@@ -1,5 +1,9 @@
-from .smart_array_base import SmartArrayNumber, SmartListNumber
-from typing import Optional, Collection, Generator, Self, Union
+from .smart_arrays_base import SmartArrayNumber, SmartListNumber
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
+from typing import Optional, Collection, Generator, Union
 
 
 class SmartArrayFloat(SmartArrayNumber[float]):

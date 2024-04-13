@@ -3,7 +3,11 @@ from .smart_array_base import SmartArray, SmartList
 from .smart_array import SmartArrayFloat, SmartListFloat
 from uncertainties import ufloat, umath
 from uncertainties.core import AffineScalarFunc as ufloat_type
-from typing import Optional, Union, Self, Collection, Set
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
+from typing import Optional, Union, Collection, Set
 # from numbers import Real
 import operator as op
 

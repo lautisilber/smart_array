@@ -1,6 +1,10 @@
 from __future__ import annotations
 import sys
-from typing import Iterable, TypeVar, Optional, Collection, Sequence, Any, Union, Callable, Generator, Iterator, Self, Set, MutableSequence, MutableSet
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
+from typing import Iterable, TypeVar, Optional, Collection, Sequence, Any, Union, Callable, Generator, Iterator, Set, MutableSequence, MutableSet
 from typing import overload
 
 T = TypeVar('T')
