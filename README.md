@@ -23,4 +23,8 @@ Everything stems out of the class SmartArray, which is a simple wrapper around a
 
 Where T is any type and C is bound to complex. That means complex, float, int or bool. Also, if you have installed the [uncertainties](https://pythonhosted.org/uncertainties/) package, you can also use the UncertaintiesArray and UncertaintiesList. These work like SmartArrayNumber and SmartListNumber (except for some boolean, logic and binary operations) but their type is ufloat. That means that any arithmetical operation propagates the error, element-wise!
 
+In utils I wrote some utility functions for these Arrays/Lists, for example way to save and load arrays to and from disk.
+
+In stats I wrote functions to do some statistical analysis. 
+
 I'm very busy with college, but I'll try to keep updating this to make it more friendly for users. :)
