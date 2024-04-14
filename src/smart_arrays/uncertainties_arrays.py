@@ -1,6 +1,6 @@
 from typing import Collection
-from .smart_array_base import SmartArray, SmartList
-from .smart_array import SmartArrayFloat, SmartListFloat
+from .smart_arrays_base import SmartArray, SmartList
+from .smart_arrays import SmartArrayFloat, SmartListFloat
 from uncertainties import ufloat, umath
 from uncertainties.core import AffineScalarFunc as ufloat_type
 try:
@@ -8,7 +8,7 @@ try:
 except ImportError:
     from typing_extensions import Self
 from typing import Optional, Union, Collection, Set
-# from numbers import Real
+from numbers import Real
 import operator as op
 
 ufloat_or_real = Union[ufloat_type, float]
@@ -20,8 +20,8 @@ class UncertaintiesArray(SmartArray[ufloat_type]):
             b = list(b)
             if not len(a) == len(b):
                 raise ValueError('a and b are not of same length')
-            if not (all(isinstance(e, float) for e in a) and all(isinstance(e, float) for e in b)):
-                raise TypeError(f'Not all values of a or b are of type {float}')
+            if not (all(isinstance(e, Real) for e in a) and all(isinstance(e, Real) for e in b)):
+                raise TypeError(f'Not all values of a or b are real numbers')
             a_: list[ufloat_type] = [ufloat(e1, e2) for e1, e2 in zip(a, b)]
         else:
             if not all(isinstance(e, ufloat_type) for e in a):
@@ -76,6 +76,32 @@ class UncertaintiesArray(SmartArray[ufloat_type]):
     
     def __rpow__(self, other: Union[Collection[ufloat_or_real], ufloat_or_real]) -> Self:
         return self.__class__(tuple(self._binary_op_right(other, umath.pow))) # type: ignore
+    
+    # in-place math ops
+
+    def __iadd__(self, other: Union[Set[ufloat_or_real], ufloat_or_real]) -> Self: # type: ignore
+        self._in_place_binary_op(other, op.add)
+        return self
+
+    def __isub__(self, other: Union[Set[ufloat_or_real], ufloat_or_real]) -> Self: # type: ignore
+        self._in_place_binary_op(other, op.sub)
+        return self
+    
+    def __imul__(self, other: Union[Set[ufloat_or_real], ufloat_or_real]) -> Self: # type: ignore
+        self._in_place_binary_op(other, op.mul)
+        return self
+    
+    def __itruediv__(self, other: Union[Set[ufloat_or_real], ufloat_or_real]) -> Self: # type: ignore
+        self._in_place_binary_op(other, op.truediv)
+        return self
+    
+    def __ifloordiv__(self, other: Union[Set[ufloat_or_real], ufloat_or_real]) -> Self: # type: ignore
+        self._in_place_binary_op(other, op.floordiv)
+        return self
+    
+    def __ipow__(self, other: Union[Set[ufloat_or_real], ufloat_or_real]) -> Self: # type: ignore
+        self._in_place_binary_op(other, umath.pow)
+        return self
     
     # unary ops
 

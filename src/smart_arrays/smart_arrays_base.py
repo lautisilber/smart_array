@@ -36,6 +36,8 @@ class SmartArray(Sequence[T]):
                         raise TypeError(f'Not all elements of a were of type {dtype}')
                 self.t: type[T] = dtype
                 self.arr = [self.t(e) if should_cast else e for e in self.arr]
+            else:
+                self.t: type[T] = dtype
         else:
             if len(self.arr) == 0:
                 raise Exception('Cannot instantiate a SmartArrayBase with an empty a and a dtype == None')
@@ -95,7 +97,13 @@ class SmartArray(Sequence[T]):
                 for i in range(start, stop, step):
                     self.arr[i] = self.t(value)
         else:
-            self.arr[key] = self.t(value)
+            should_cast: int = False
+            if not isinstance(value, self.t):
+                if castable(value, self.t):
+                    should_cast = True
+                else:
+                    raise TypeError(f'is not instance of or is not castable to {self.t}')
+            self.arr[key] = self.t(value) if should_cast else value
 
     def __contains__(self, item: Any) -> bool:
         return item in self.arr

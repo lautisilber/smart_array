@@ -33,5 +33,5 @@ classifiers = [
 uncertainties=["uncertainties>=3.1"]
 
 [project.urls]
-Homepage = "https://github.com/lautisilber/smart_array"
-Source = "https://github.com/lautisilber/smart_array"
+Homepage = "https://github.com/lautisilber/smart_arrays"
+Source = "https://github.com/lautisilber/smart_arrays"

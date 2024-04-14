@@ -9,7 +9,6 @@ from .smart_arrays_base import (
 
 try:
     import uncertainties
-    from .uncertainties_array import UncertaintiesArray, UncertaintiesList
-    __all__ = ['smart_array', 'uncertainties_array']
+    from .uncertainties_arrays import UncertaintiesArray, UncertaintiesList
 except ModuleNotFoundError:
-    __all__ = ['smart_array']
+    pass
